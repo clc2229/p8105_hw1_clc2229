@@ -146,9 +146,9 @@ $(document).ready(function () {
 )</code></pre>
 <p>The following code chunk attempts to calculate the mean of each of the four elements in the dataframe, hw_df:</p>
 <pre class="r"><code>mean(hw_df$random_sample_10)</code></pre>
-<pre><code>## [1] 3.205375</code></pre>
+<pre><code>## [1] 2.437974</code></pre>
 <pre class="r"><code>mean(hw_df$vec_logical_gt2)</code></pre>
-<pre><code>## [1] 0.7</code></pre>
+<pre><code>## [1] 0.6</code></pre>
 <pre class="r"><code>mean(hw_df$vec_char_10)</code></pre>
 <pre><code>## Warning in mean.default(hw_df$vec_char_10): argument is not numeric or
 ## logical: returning NA</code></pre>
@@ -157,8 +157,14 @@ $(document).ready(function () {
 <pre><code>## Warning in mean.default(hw_df$vec_factor_10): argument is not numeric or
 ## logical: returning NA</code></pre>
 <pre><code>## [1] NA</code></pre>
-<p>The output of the above code chunk shows that we are able to calculate a mean of approximately 3.21 and 0.7 for the <strong>random sample</strong> and the <strong>logical vector</strong>, respectively.</p>
+<p>The output of the above code chunk shows that we are able to calculate a mean of approximately 2.44 and 0.6 for the <strong>random sample</strong> and the <strong>logical vector</strong>, respectively.</p>
 <p>However, we are <em>not</em> able to calculate the mean of the <strong>character vector</strong> and the <strong>factor vector</strong>. The associated error message explains that this is because the mean() function requires numeric or logical arguments. Since the character vector and factor vector are neither numeric nor logical, the mean() function returns NA for these two vectors.</p>
+<p>The following code chunk shows how we can attempt to calculate the means of the logical, character, and factor vectors by treating them as numeric types.</p>
+<pre class="r"><code>mean(as.numeric(hw_df$vec_logical_gt2))
+mean(as.numeric(hw_df$vec_char_10))
+mean(as.numeric(hw_df$vec_factor_10))</code></pre>
+<p>The output of the above code chunk shows that the mean of the logical vector is the same as the mean we calculated during our first attempt (i.e. 0.6).</p>
+<p>However, we are still <em>unsuccessful</em> in our attempt to calculate the means of the character and factor vectors.</p>
 </div>
 
 

@@ -31,7 +31,7 @@ hw_df = tibble(
 
 The following code chunk attempts to calculate the mean of each of the four elements in the dataframe, hw_df:
 
-```{r mean chunk}
+```{r first mean attempt chunk}
 mean(hw_df$random_sample_10)
 mean(hw_df$vec_logical_gt2)
 mean(hw_df$vec_char_10)
@@ -42,3 +42,14 @@ The output of the above code chunk shows that we are able to calculate a mean  o
 
 However, we are _not_ able to calculate the mean of the **character vector** and the **factor vector**. The associated error message explains that this is because the mean() function requires numeric or logical arguments. Since the character vector and factor vector are neither numeric nor logical, the mean() function returns `r mean(hw_df$vec_char_10)` for these two vectors.
 
+The following code chunk shows how we can attempt to calculate the means of the logical, character, and factor vectors by treating them as numeric types. 
+
+```{r second mean attempt chunk, eval = FALSE}
+mean(as.numeric(hw_df$vec_logical_gt2))
+mean(as.numeric(hw_df$vec_char_10))
+mean(as.numeric(hw_df$vec_factor_10))
+```
+
+The output of the above code chunk shows that the mean of the logical vector is the same as the mean we calculated during our first attempt (i.e. `r round(mean(hw_df$vec_logical_gt2), digits = 2)`).
+
+However, we are still _unsuccessful_ in our attempt to calculate the means of the character and factor vectors.
