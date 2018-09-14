@@ -129,7 +129,22 @@ $(document).ready(function () {
 </div>
 
 
-
+<div id="problem-1" class="section level1">
+<h1>Problem 1</h1>
+<p>Here is a code chunk that creates a data frame with the following:</p>
+<ul>
+<li>a random sample of size 10 from a uniform[0,5] distribution</li>
+<li>a logical vector indicating whether elements of the sample are greater than 2</li>
+<li>a (length-10) character vector</li>
+<li>a (length-10) factor vector</li>
+</ul>
+<pre class="r"><code>hw_df = tibble(
+  random_sample_10 = runif(10, min = 0, max = 5),
+  vec_logical_gt2 = random_sample_10 &gt; 2,
+   vec_char_10 = c(&quot;This&quot;,&quot;is&quot;, &quot;a&quot;, &quot;character&quot;, &quot;vector&quot;, &quot;with&quot;, &quot;a&quot;, &quot;length&quot;, &quot;of&quot;, &quot;ten.&quot;),
+  vec_factor_10 = c(&quot;male&quot;,&quot;male&quot;,&quot;female&quot;, &quot;female&quot;, &quot;female&quot;, &quot;male&quot;, &quot;male&quot;, &quot;female&quot;, &quot;female&quot;, &quot;male&quot;)
+)</code></pre>
+</div>
 
 
 
