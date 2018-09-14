@@ -131,7 +131,7 @@ $(document).ready(function () {
 
 <div id="problem-1" class="section level1">
 <h1>Problem 1</h1>
-<p>Here is a code chunk that creates a data frame with the following:</p>
+<p>Here is a code chunk that creates a dataframe with the following elements:</p>
 <ul>
 <li>a random sample of size 10 from a uniform[0,5] distribution</li>
 <li>a logical vector indicating whether elements of the sample are greater than 2</li>
@@ -141,9 +141,24 @@ $(document).ready(function () {
 <pre class="r"><code>hw_df = tibble(
   random_sample_10 = runif(10, min = 0, max = 5),
   vec_logical_gt2 = random_sample_10 &gt; 2,
-   vec_char_10 = c(&quot;This&quot;,&quot;is&quot;, &quot;a&quot;, &quot;character&quot;, &quot;vector&quot;, &quot;with&quot;, &quot;a&quot;, &quot;length&quot;, &quot;of&quot;, &quot;ten.&quot;),
+  vec_char_10 = c(&quot;This&quot;,&quot;is&quot;, &quot;a&quot;, &quot;character&quot;, &quot;vector&quot;, &quot;with&quot;, &quot;a&quot;, &quot;length&quot;, &quot;of&quot;, &quot;ten.&quot;),
   vec_factor_10 = c(&quot;male&quot;,&quot;male&quot;,&quot;female&quot;, &quot;female&quot;, &quot;female&quot;, &quot;male&quot;, &quot;male&quot;, &quot;female&quot;, &quot;female&quot;, &quot;male&quot;)
 )</code></pre>
+<p>The following code chunk attempts to calculate the mean of each of the four elements in the dataframe, hw_df:</p>
+<pre class="r"><code>mean(hw_df$random_sample_10)</code></pre>
+<pre><code>## [1] 3.205375</code></pre>
+<pre class="r"><code>mean(hw_df$vec_logical_gt2)</code></pre>
+<pre><code>## [1] 0.7</code></pre>
+<pre class="r"><code>mean(hw_df$vec_char_10)</code></pre>
+<pre><code>## Warning in mean.default(hw_df$vec_char_10): argument is not numeric or
+## logical: returning NA</code></pre>
+<pre><code>## [1] NA</code></pre>
+<pre class="r"><code>mean(hw_df$vec_factor_10)</code></pre>
+<pre><code>## Warning in mean.default(hw_df$vec_factor_10): argument is not numeric or
+## logical: returning NA</code></pre>
+<pre><code>## [1] NA</code></pre>
+<p>The output of the above code chunk shows that we are able to calculate a mean of approximately 3.21 and 0.7 for the <strong>random sample</strong> and the <strong>logical vector</strong>, respectively.</p>
+<p>However, we are <em>not</em> able to calculate the mean of the <strong>character vector</strong> and the <strong>factor vector</strong>. The associated error message explains that this is because the mean() function requires numeric or logical arguments. Since the character vector and factor vector are neither numeric nor logical, the mean() function returns NA for these two vectors.</p>
 </div>
 
 

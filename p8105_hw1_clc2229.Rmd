@@ -13,21 +13,32 @@ library(tidyverse)
 
 # Problem 1
 
-Here is a code chunk that creates a data frame with the following:
+Here is a code chunk that creates a dataframe with the following elements:
  
   * a random sample of size 10 from a uniform[0,5] distribution
   * a logical vector indicating whether elements of the sample are greater than 2
   * a (length-10) character vector
   * a (length-10) factor vector
   
-  
 ```{r sample chunk}
 hw_df = tibble(
   random_sample_10 = runif(10, min = 0, max = 5),
   vec_logical_gt2 = random_sample_10 > 2,
-   vec_char_10 = c("This","is", "a", "character", "vector", "with", "a", "length", "of", "ten."),
+  vec_char_10 = c("This","is", "a", "character", "vector", "with", "a", "length", "of", "ten."),
   vec_factor_10 = c("male","male","female", "female", "female", "male", "male", "female", "female", "male")
 )
 ```
 
+The following code chunk attempts to calculate the mean of each of the four elements in the dataframe, hw_df:
+
+```{r mean chunk}
+mean(hw_df$random_sample_10)
+mean(hw_df$vec_logical_gt2)
+mean(hw_df$vec_char_10)
+mean(hw_df$vec_factor_10)
+```
+
+The output of the above code chunk shows that we are able to calculate a mean  of approximately `r round(mean(hw_df$random_sample_10), digits = 2)` and `r round(mean(hw_df$vec_logical_gt2), digits = 2)` for the **random sample** and the **logical vector**, respectively. 
+
+However, we are _not_ able to calculate the mean of the **character vector** and the **factor vector**. The associated error message explains that this is because the mean() function requires numeric or logical arguments. Since the character vector and factor vector are neither numeric nor logical, the mean() function returns `r mean(hw_df$vec_char_10)` for these two vectors.
 
