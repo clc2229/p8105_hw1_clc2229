@@ -25,10 +25,9 @@ hw_df = tibble(
   random_sample_10 = runif(10, min = 0, max = 5),
   vec_logical_gt2 = random_sample_10 > 2,
   vec_char_10 = c("This","is", "a", "character", "vector", "with", "a", "length", "of", "ten."),
-  vec_factor_10 = c("male","male","female", "female", "female", "male", "male", "female", "female", "male")
+  vec_factor_10 = factor(c("male","male","female", "female", "female", "male", "male", "female", "female", "male"))
 )
 
-hw_df$vec_factor_10 = factor(hw_df$vec_factor_10)
 ```
 
 The following code chunk attempts to calculate the mean of each of the four elements in the dataframe, hw_df:
@@ -64,3 +63,26 @@ mean(as.numeric(as.character(hw_df$vec_factor_10)))
 ```
 
 The above output shows that we are able to calculate the mean of the character vector after converting it from character to factor to numeric (i.e. `r round(mean(as.numeric(as.factor(hw_df$vec_char_10))), digits = 2)`). However, we are now unable to calculate the mean for the factor vector that has been converted from factor to character to numeric. 
+
+# Problem 2
+
+The following code chunk creates a dataframe with the following elements:
+
+  * x: a random sample of size 1000 from a standard Normal distribution
+  * y: a random sample of size 1000 from a standard Normal distribution
+  * a logical vector indicating whether x + y > 0
+  * a numeric vector created by coercing the above logical vector
+  * a factor vector created by coercing the above logical vector
+  
+```{r data frame chunk}
+hw_df_2 = tibble(
+  x = rnorm(1000),
+  y = rnorm(1000),
+  xy_positive = (x + y) > 2,
+  numeric_logical = as.numeric(xy_positive),
+  factor_logical = as.factor(xy_positive)
+)
+```
+  
+The dataframe created by the above code chunk has a size of: rows = `r nrow(hw_df_2)`, columns = `r ncol(hw_df_2)`. The mean of x is `r round(mean(hw_df_2$x), digits = 2)`. The median of x is `r round(mean(hw_df_2$x), digits = 2)`. The proportion of cases for which the logical vector is TRUE is `r mean(hw_df_2$xy_positive)`.
+  
