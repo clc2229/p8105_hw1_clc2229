@@ -143,12 +143,14 @@ $(document).ready(function () {
   vec_logical_gt2 = random_sample_10 &gt; 2,
   vec_char_10 = c(&quot;This&quot;,&quot;is&quot;, &quot;a&quot;, &quot;character&quot;, &quot;vector&quot;, &quot;with&quot;, &quot;a&quot;, &quot;length&quot;, &quot;of&quot;, &quot;ten.&quot;),
   vec_factor_10 = c(&quot;male&quot;,&quot;male&quot;,&quot;female&quot;, &quot;female&quot;, &quot;female&quot;, &quot;male&quot;, &quot;male&quot;, &quot;female&quot;, &quot;female&quot;, &quot;male&quot;)
-)</code></pre>
+)
+
+hw_df$vec_factor_10 = factor(hw_df$vec_factor_10)</code></pre>
 <p>The following code chunk attempts to calculate the mean of each of the four elements in the dataframe, hw_df:</p>
 <pre class="r"><code>mean(hw_df$random_sample_10)</code></pre>
-<pre><code>## [1] 2.437974</code></pre>
+<pre><code>## [1] 1.344986</code></pre>
 <pre class="r"><code>mean(hw_df$vec_logical_gt2)</code></pre>
-<pre><code>## [1] 0.6</code></pre>
+<pre><code>## [1] 0.3</code></pre>
 <pre class="r"><code>mean(hw_df$vec_char_10)</code></pre>
 <pre><code>## Warning in mean.default(hw_df$vec_char_10): argument is not numeric or
 ## logical: returning NA</code></pre>
@@ -157,14 +159,21 @@ $(document).ready(function () {
 <pre><code>## Warning in mean.default(hw_df$vec_factor_10): argument is not numeric or
 ## logical: returning NA</code></pre>
 <pre><code>## [1] NA</code></pre>
-<p>The output of the above code chunk shows that we are able to calculate a mean of approximately 2.44 and 0.6 for the <strong>random sample</strong> and the <strong>logical vector</strong>, respectively.</p>
+<p>The output of the above code chunk shows that we are able to calculate a mean of approximately 1.34 and 0.3 for the <strong>random sample</strong> and the <strong>logical vector</strong>, respectively.</p>
 <p>However, we are <em>not</em> able to calculate the mean of the <strong>character vector</strong> and the <strong>factor vector</strong>. The associated error message explains that this is because the mean() function requires numeric or logical arguments. Since the character vector and factor vector are neither numeric nor logical, the mean() function returns NA for these two vectors.</p>
 <p>The following code chunk shows how we can attempt to calculate the means of the logical, character, and factor vectors by treating them as numeric types.</p>
 <pre class="r"><code>mean(as.numeric(hw_df$vec_logical_gt2))
 mean(as.numeric(hw_df$vec_char_10))
 mean(as.numeric(hw_df$vec_factor_10))</code></pre>
-<p>The output of the above code chunk shows that the mean of the logical vector is the same as the mean we calculated during our first attempt (i.e. 0.6).</p>
-<p>However, we are still <em>unsuccessful</em> in our attempt to calculate the means of the character and factor vectors.</p>
+<p>The output of the above code chunk shows that the mean of the logical vector is the same as the mean we calculated during our first attempt (i.e. 0.3). Further, we see that the mean of the factor vector can now be computed and is equal to 1.5.</p>
+<p>However, we are still <em>unsuccessful</em> in our attempt to calculate the mean of the character vector.</p>
+<p>The following code chunk shows what happens when we try calculate the mean after performing the following conversions: character to factor to numeric and factor to character to numeric.</p>
+<pre class="r"><code>mean(as.numeric(as.factor(hw_df$vec_char_10)))</code></pre>
+<pre><code>## [1] 4.6</code></pre>
+<pre class="r"><code>mean(as.numeric(as.character(hw_df$vec_factor_10)))</code></pre>
+<pre><code>## Warning in mean(as.numeric(as.character(hw_df$vec_factor_10))): NAs
+## introduced by coercion</code></pre>
+<pre><code>## [1] NA</code></pre>
 </div>
 
 

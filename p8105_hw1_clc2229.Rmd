@@ -27,6 +27,8 @@ hw_df = tibble(
   vec_char_10 = c("This","is", "a", "character", "vector", "with", "a", "length", "of", "ten."),
   vec_factor_10 = c("male","male","female", "female", "female", "male", "male", "female", "female", "male")
 )
+
+hw_df$vec_factor_10 = factor(hw_df$vec_factor_10)
 ```
 
 The following code chunk attempts to calculate the mean of each of the four elements in the dataframe, hw_df:
@@ -50,6 +52,15 @@ mean(as.numeric(hw_df$vec_char_10))
 mean(as.numeric(hw_df$vec_factor_10))
 ```
 
-The output of the above code chunk shows that the mean of the logical vector is the same as the mean we calculated during our first attempt (i.e. `r round(mean(hw_df$vec_logical_gt2), digits = 2)`).
+The output of the above code chunk shows that the mean of the logical vector is the same as the mean we calculated during our first attempt (i.e. `r round(mean(as.numeric(hw_df$vec_logical_gt2)), digits = 2)`). Further, we see that the mean of the factor vector can now be computed and is equal to `r round(mean(as.numeric(hw_df$vec_factor_10)), digits = 2)`.
 
-However, we are still _unsuccessful_ in our attempt to calculate the means of the character and factor vectors.
+However, we are still _unsuccessful_ in our attempt to calculate the mean of the character vector because treating the character vector as numeric results in NA.
+
+The following code chunk shows what happens when we try calculate the mean after performing the following conversions: character to factor to numeric and factor to character to numeric.
+
+```{r third mean attempt chunk}
+mean(as.numeric(as.factor(hw_df$vec_char_10)))
+mean(as.numeric(as.character(hw_df$vec_factor_10)))
+```
+
+The above output shows that we are able to calculate the mean of the character vector after converting it from character to factor to numeric (i.e. `r round(mean(as.numeric(as.factor(hw_df$vec_char_10))), digits = 2)`). However, we are now unable to calculate the mean for the factor vector that has been converted from factor to character to numeric. 
