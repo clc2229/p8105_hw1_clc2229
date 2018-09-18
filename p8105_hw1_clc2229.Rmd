@@ -2,7 +2,7 @@
 title: "github_document"
 author: "Christopher Crowe"
 date: "September 13, 2018"
-output: html_document
+output: github_document
 ---
 
 
@@ -79,10 +79,29 @@ hw_df_2 = tibble(
   x = rnorm(1000),
   y = rnorm(1000),
   xy_positive = (x + y) > 2,
-  numeric_logical = as.numeric(xy_positive),
-  factor_logical = as.factor(xy_positive)
+  logical_as_numeric = as.numeric(xy_positive),
+  logical_as_factor = as.factor(xy_positive)
 )
 ```
   
-The dataframe created by the above code chunk has a size of: rows = `r nrow(hw_df_2)`, columns = `r ncol(hw_df_2)`. The mean of x is `r round(mean(hw_df_2$x), digits = 2)`. The median of x is `r round(mean(hw_df_2$x), digits = 2)`. The proportion of cases for which the logical vector is TRUE is `r mean(hw_df_2$xy_positive)`.
-  
+The dataframe created by the above code chunk has a size of: rows = `r nrow(hw_df_2)`, columns = `r ncol(hw_df_2)`. The mean of x is `r round(mean(hw_df_2$x), digits = 2)`. The median of x is `r round(median(hw_df_2$x), digits = 2)`. The proportion of cases for which the logical vector is TRUE is `r mean(hw_df_2$xy_positive)`.
+
+The following code chunk creates a 3 different scatter plots: 
+  * one colored using the logical vector
+  * one colored using the logical vector that has been treated as numeric
+  * one colored using the logical vector that has been treated as a factor 
+
+```{r scatterplot chunk}
+
+## create plot colored using logical vector and save plot in project directory
+ggplot(hw_df_2, aes(x = x, y = y, color = hw_df_2$xy_positive)) + geom_point()
+ggsave("myplot.pdf")
+
+## create plot colored using logical vector as numeric
+ggplot(hw_df_2, aes(x = x, y = y, color = hw_df_2$logical_as_numeric)) + geom_point()
+
+## create plot colored using logical vector as factor
+ggplot(hw_df_2, aes(x = x, y = y, color = hw_df_2$logical_as_factor)) + geom_point()
+```
+
+
