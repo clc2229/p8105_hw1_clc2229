@@ -8,6 +8,8 @@ output: github_document
 
 
 ```{r library chunk, include = FALSE}
+
+## load the library tidyverse
 library(tidyverse)
 ```
 
@@ -21,6 +23,8 @@ Here is a code chunk that creates a dataframe with the following elements:
   * a (length-10) factor vector
   
 ```{r sample chunk}
+
+## set up the data frame
 hw_df = tibble(
   random_sample_10 = runif(10, min = 0, max = 5),
   vec_logical_gt2 = random_sample_10 > 2,
@@ -33,9 +37,17 @@ hw_df = tibble(
 The following code chunk attempts to calculate the mean of each of the four elements in the dataframe, hw_df:
 
 ```{r first mean attempt chunk}
+
+## take the mean of the random sample
 mean(hw_df$random_sample_10)
+
+## take the mean of the logical vector
 mean(hw_df$vec_logical_gt2)
+
+## take the mean of the character vector
 mean(hw_df$vec_char_10)
+
+## take the mean of the factor vector
 mean(hw_df$vec_factor_10)
 ```
 
@@ -46,8 +58,14 @@ However, we are _not_ able to calculate the mean of the **character vector** and
 The following code chunk shows how we can attempt to calculate the means of the logical, character, and factor vectors by treating them as numeric types. 
 
 ```{r second mean attempt chunk, eval = FALSE}
+
+## convert logical to numeric and take the mean
 mean(as.numeric(hw_df$vec_logical_gt2))
+
+## convert character to numeric and take the mean
 mean(as.numeric(hw_df$vec_char_10))
+
+## convert factor to numeric and take the mean
 mean(as.numeric(hw_df$vec_factor_10))
 ```
 
@@ -55,10 +73,14 @@ The output of the above code chunk shows that the mean of the logical vector is 
 
 However, we are still _unsuccessful_ in our attempt to calculate the mean of the character vector because treating the character vector as numeric results in NA.
 
-The following code chunk shows what happens when we try calculate the mean after performing the following conversions: character to factor to numeric and factor to character to numeric.
+The following code chunk shows what happens when we try to calculate the mean after performing the following conversions: character to factor to numeric and factor to character to numeric.
 
 ```{r third mean attempt chunk}
+
+## convert character to factor to numeric and take the mean
 mean(as.numeric(as.factor(hw_df$vec_char_10)))
+
+## convert factor to character to numeric and take the mean
 mean(as.numeric(as.character(hw_df$vec_factor_10)))
 ```
 
@@ -75,6 +97,8 @@ The following code chunk creates a dataframe with the following elements:
   * a factor vector created by coercing the above logical vector
   
 ```{r data frame chunk}
+
+## set up data frame
 hw_df_2 = tibble(
   x = rnorm(1000),
   y = rnorm(1000),
@@ -104,4 +128,5 @@ ggplot(hw_df_2, aes(x = x, y = y, color = hw_df_2$logical_as_numeric)) + geom_po
 ggplot(hw_df_2, aes(x = x, y = y, color = hw_df_2$logical_as_factor)) + geom_point()
 ```
 
+The above scatter plots show how the color scales differ depending on the properties of the variables used in the color statement. Specifically, since the logical and factor vectors have discrete values, there are discrete color codes. On the other hand, using a numeric variables results in a gradient of colors because a numeric variable can be continuous. 
 
