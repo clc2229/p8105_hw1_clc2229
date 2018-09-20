@@ -128,5 +128,5 @@ ggplot(hw_df_2, aes(x = x, y = y, color = hw_df_2$logical_as_numeric)) + geom_po
 ggplot(hw_df_2, aes(x = x, y = y, color = hw_df_2$logical_as_factor)) + geom_point()
 ```
 
-The above scatter plots show how the color scales differ depending on the properties of the variables used in the color statement. Specifically, since the logical and factor vectors have discrete values, there are discrete color codes. On the other hand, using a numeric variables results in a gradient of colors because a numeric variable can be continuous. 
+The above scatter plots show how the color scales differ depending on the properties of the variables used in the color statement. Specifically, since the logical and factor vectors have discrete values, there are discrete color codes. On the other hand, using a numeric variable results in a gradient of colors because a numeric variable can be continuous. 
 
